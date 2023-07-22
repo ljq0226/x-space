@@ -1,0 +1,6 @@
+{
+  "extends": "@antfu/eslint-config",
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": 0
+  }
+}
