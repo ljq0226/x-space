@@ -20,6 +20,7 @@ module.exports = {
         "main-primary": "rgb(var(--main-primary) / <alpha-value>)",
         "main-secondary": "rgb(var(--main-secondary) / <alpha-value>)",
         "main-background": "rgb(var(--main-background) / <alpha-value>)",
+        "main-text": "rgb(var(--main-text) / <alpha-value>)",
         "main-search-background":
           "rgb(var(--main-search-background) / <alpha-value>)",
         "main-sidebar-background":
