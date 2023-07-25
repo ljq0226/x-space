@@ -8,10 +8,8 @@ type MenuLinkProps = ComponentPropsWithRef<'a'> & {
 
 export const MenuLink = forwardRef<HTMLAnchorElement, MenuLinkProps>(
   ({ href, children, ...rest }, ref) => (
-    <Link href={href}>
-      <div ref={ref} {...rest}>
-        {children}
-      </div>
+    <Link href={href} ref={ref} {...rest}>
+      {children}
     </Link>
   )
 );

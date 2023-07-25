@@ -1,6 +1,4 @@
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
-import { manageFollow } from '@lib/firebase/utils';
 import { preventBubbling } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
@@ -15,22 +13,19 @@ export function FollowButton({
   userTargetId,
   userTargetUsername
 }: FollowButtonProps): JSX.Element | null {
-  const { user } = useAuth();
   const { open, openModal, closeModal } = useModal();
 
-  if (user?.id === userTargetId) return null;
 
-  const { id: userId, following } = user ?? {};
+  const handleUnfollow = () => { }
+  const handleFollow = () => { }
+  // const handleFollow = (): Promise<void> =>
+  //   manageFollow('follow', userId as string, userTargetId);
 
-  const handleFollow = (): Promise<void> =>
-    manageFollow('follow', userId as string, userTargetId);
+  // const handleUnfollow = async (): Promise<void> => {
+  //   await manageFollow('unfollow', userId as string, userTargetId);
+  //   closeModal();
+  // };
 
-  const handleUnfollow = async (): Promise<void> => {
-    await manageFollow('unfollow', userId as string, userTargetId);
-    closeModal();
-  };
-
-  const userIsFollowed = !!following?.includes(userTargetId ?? '');
 
   return (
     <>
@@ -47,7 +42,7 @@ export function FollowButton({
           closeModal={closeModal}
         />
       </Modal>
-      {userIsFollowed ? (
+      {true ? (
         <Button
           className='dark-bg-tab min-w-[106px] self-start border border-light-line-reply px-4 py-1.5 
                      font-bold hover:border-accent-red hover:bg-accent-red/10 hover:text-accent-red

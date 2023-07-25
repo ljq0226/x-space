@@ -11,7 +11,6 @@ import { InputForm, fromTop } from './input-form';
 import { ImagePreview } from './image-preview';
 import { InputOptions } from './input-options';
 import type { ReactNode, FormEvent, ChangeEvent, ClipboardEvent } from 'react';
-import type { WithFieldValue } from 'firebase/firestore';
 import type { Variants } from 'framer-motion';
 import type { User } from '@lib/types/user';
 import type { Tweet } from '@lib/types/tweet';
@@ -47,8 +46,6 @@ export function Input({
   const [loading, setLoading] = useState(false);
   const [visited, setVisited] = useState(false);
 
-  const { user, isAdmin } = useAuth();
-  const { name, username, photoURL } = user as User;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -71,30 +68,31 @@ export function Input({
 
     const isReplying = reply ?? replyModal;
 
-    const userId = user?.id as string;
+    // const userId = user?.id as string;
+    const userId = '12313312'
 
-    const tweetData: WithFieldValue<Omit<Tweet, 'id'>> = {
-      text: inputValue.trim() || null,
-      parent: isReplying && parent ? parent : null,
-      images: await uploadImages(userId, selectedImages),
-      userLikes: [],
-      createdBy: userId,
-      createdAt: serverTimestamp(),
-      updatedAt: null,
-      userReplies: 0,
-      userRetweets: []
-    };
+    // const tweetData: WithFieldValue<Omit<Tweet, 'id'>> = {
+    //   text: inputValue.trim() || null,
+    //   parent: isReplying && parent ? parent : null,
+    //   images: await uploadImages(userId, selectedImages),
+    //   userLikes: [],
+    //   createdBy: userId,
+    //   createdAt: serverTimestamp(),
+    //   updatedAt: null,
+    //   userReplies: 0,
+    //   userRetweets: []
+    // };
 
     await sleep(500);
 
-    const [tweetRef] = await Promise.all([
-      addDoc(tweetsCollection, tweetData),
-      manageTotalTweets('increment', userId),
-      tweetData.images && manageTotalPhotos('increment', userId),
-      isReplying && manageReply('increment', parent?.id as string)
-    ]);
+    // const [tweetRef] = await Promise.all([
+    //   addDoc(tweetsCollection, tweetData),
+    //   manageTotalTweets('increment', userId),
+    //   tweetData.images && manageTotalPhotos('increment', userId),
+    //   isReplying && manageReply('increment', parent?.id as string)
+    // ]);
 
-    const { id: tweetId } = await getDoc(tweetRef);
+    // const { id: tweetId } = await getDoc(tweetRef);
 
     if (!modal && !replyModal) {
       discardTweet();
@@ -107,9 +105,9 @@ export function Input({
       () => (
         <span className='flex gap-2'>
           Your Tweet was sent
-          <Link href={`/tweet/${tweetId}`}>
+          {/* <Link href={`/tweet/${tweetId}`}>
             <div className='font-bold custom-underline'>View</div>
-          </Link>
+          </Link> */}
         </span>
       ),
       { duration: 6000 }
@@ -181,7 +179,7 @@ export function Input({
   const handleFocus = (): void => setVisited(!loading);
 
   const formId = useId();
-
+  const isAdmin = false
   const inputLimit = isAdmin ? 560 : 280;
 
   const inputLength = inputValue.length;
@@ -229,7 +227,7 @@ export function Input({
         )}
         htmlFor={formId}
       >
-        <UserAvatar src={photoURL} alt={name} username={username} />
+        {/* <UserAvatar src={photoURL} alt={name} username={username} /> */}
         <div className='flex flex-col w-full gap-4'>
           <InputForm
             modal={modal}
