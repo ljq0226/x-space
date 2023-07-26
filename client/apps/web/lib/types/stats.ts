@@ -1,12 +1,11 @@
-import type { Timestamp, FirestoreDataConverter } from 'firebase/firestore';
 
 export type Stats = {
   likes: string[];
   tweets: string[];
-  updatedAt: Timestamp | null;
+  updatedAt: any| null;
 };
 
-export const statsConverter: FirestoreDataConverter<Stats> = {
+export const statsConverter: any = {
   toFirestore(bookmark) {
     return { ...bookmark };
   },

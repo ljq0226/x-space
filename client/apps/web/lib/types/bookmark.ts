@@ -1,11 +1,10 @@
-import type { Timestamp, FirestoreDataConverter } from 'firebase/firestore';
 
 export type Bookmark = {
   id: string;
-  createdAt: Timestamp;
+  createdAt: any;
 };
 
-export const bookmarkConverter: FirestoreDataConverter<Bookmark> = {
+export const bookmarkConverter: any = {
   toFirestore(bookmark) {
     return { ...bookmark };
   },

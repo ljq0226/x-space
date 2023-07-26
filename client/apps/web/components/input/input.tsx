@@ -77,7 +77,7 @@ export function Input({
     //   images: await uploadImages(userId, selectedImages),
     //   userLikes: [],
     //   createdBy: userId,
-    //   createdAt: serverTimestamp(),
+    //   createdAt: serverany(),
     //   updatedAt: null,
     //   userReplies: 0,
     //   userRetweets: []
@@ -221,8 +221,8 @@ export function Input({
           reply
             ? 'pt-3 pb-1'
             : replyModal
-            ? 'pt-0'
-            : 'border-b-2 border-light-border dark:border-dark-border',
+              ? 'pt-0'
+              : 'border-b-2 border-light-border dark:border-dark-border',
           (disabled || loading) && 'pointer-events-none opacity-50'
         )}
         htmlFor={formId}

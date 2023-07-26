@@ -1,9 +1,3 @@
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { UserCard } from '@components/user/user-card';
-import { Loading } from '@components/ui/loading';
-import { Error } from '@components/ui/error';
-import { variants } from './aside-trends';
 
 export function Suggestions(): JSX.Element {
 

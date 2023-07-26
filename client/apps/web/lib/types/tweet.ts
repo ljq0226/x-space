@@ -1,4 +1,3 @@
-import type { Timestamp, FirestoreDataConverter } from 'firebase/firestore';
 import type { ImagesPreview } from './file';
 import type { User } from './user';
 
@@ -9,15 +8,15 @@ export type Tweet = {
   parent: { id: string; username: string } | null;
   userLikes: string[];
   createdBy: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp | null;
+  createdAt: any;
+  updatedAt: any | null;
   userReplies: number;
   userRetweets: string[];
 };
 
 export type TweetWithUser = Tweet & { user: User };
 
-export const tweetConverter: FirestoreDataConverter<Tweet> = {
+export const tweetConverter: any = {
   toFirestore(tweet) {
     return { ...tweet };
   },

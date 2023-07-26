@@ -1,5 +1,4 @@
 import type { Theme, Accent } from './theme';
-import type { Timestamp, FirestoreDataConverter } from 'firebase/firestore';
 
 export type User = {
   id: string;
@@ -14,8 +13,8 @@ export type User = {
   verified: boolean;
   following: string[];
   followers: string[];
-  createdAt: Timestamp;
-  updatedAt: Timestamp | null;
+  createdAt: any;
+  updatedAt: any | null;
   totalTweets: number;
   totalPhotos: number;
   pinnedTweet: string | null;
@@ -29,7 +28,7 @@ export type EditableData = Extract<
 
 export type EditableUserData = Pick<User, EditableData>;
 
-export const userConverter: FirestoreDataConverter<User> = {
+export const userConverter: any = {
   toFirestore(user) {
     return { ...user };
   },
